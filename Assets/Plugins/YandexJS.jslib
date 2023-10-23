@@ -170,4 +170,10 @@ RateGameExtern: function () {
       var deviceData = ysdk.deviceInfo.type;   
       myGameInstance.SendMessage('YandexSDK', 'SetDeviceInfo', deviceData);
     },
+
+     GetDomainExtern : function()
+    {
+      var deviceData = ysdk.environment.i18n.tld;   
+      myGameInstance.SendMessage('YandexSDK', 'SetDomain', domainData);
+    },
   });

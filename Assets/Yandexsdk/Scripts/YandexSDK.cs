@@ -40,15 +40,18 @@ public class YandexSDK : MonoBehaviour
     //Получение типа устройства
     [DllImport("__Internal")]
     private static extern string GetDevice();
+
     //Оценка игры
     [DllImport("__Internal")]
     private static extern string RateGameExtern();
+
 
     //public event Action<string> LeaderBoardReady;
     //LeaderboardController leaderboard;
     //string jsonEntries;
     bool isDataGetting;
     string deviceType;
+    public string domainType;
     private void Awake()
     {
         //LeaderBoardReady += SetJSONEntries;
@@ -60,6 +63,7 @@ public class YandexSDK : MonoBehaviour
     void Start()
     {
         // leaderboard = FindObjectOfType<LeaderboardController>();
+
         
     }
     //Вызывается месте сохранения Save -> SaveExtern в jslib
@@ -108,26 +112,28 @@ public class YandexSDK : MonoBehaviour
     Debug.Log("Авторизация");
 #endif
     }
-//    public static void SetToLeaderboard()
-//    {
-//#if !UNITY_EDITOR
-//        SetToLeaderboard(Progress.Instance.playerInfo.rounds); 
-//#endif
-//    }
 
-//    public void CheckAuthorization()
-//    {
-//#if !UNITY_EDITOR
-//        CheckAuth();
-//#endif
-//    }
+
+    //    public static void SetToLeaderboard()
+    //    {
+    //#if !UNITY_EDITOR
+    //        SetToLeaderboard(Progress.Instance.playerInfo.rounds); 
+    //#endif
+    //    }
+
+    //    public void CheckAuthorization()
+    //    {
+    //#if !UNITY_EDITOR
+    //        CheckAuth();
+    //#endif
+    //    }
     //ShowLeaderBoard() -> BoardEntriesReady -> SetJSONEntries
-//    public void GetLeaderboardEntries()
-//    {
-//#if !UNITY_EDITOR
-//        ShowLeaderBoard();
-//#endif       
-//    }
+    //    public void GetLeaderboardEntries()
+    //    {
+    //#if !UNITY_EDITOR
+    //        ShowLeaderBoard();
+    //#endif       
+    //    }
     //public void BoardEntriesReady(string _data)
     //{
     //    LeaderBoardReady?.Invoke(_data);      
@@ -181,7 +187,7 @@ public class YandexSDK : MonoBehaviour
     {
 #if !UNITY_EDITOR
         RateGameExtern();
-#else 
+#else
         Debug.Log("Оценка игры");
 #endif
 

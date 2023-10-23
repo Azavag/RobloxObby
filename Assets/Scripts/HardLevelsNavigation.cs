@@ -8,6 +8,7 @@ public class HardLevelsNavigation : MonoBehaviour
      bool isButtonInteractible;
     [SerializeField] Button levelsNavButton;
     [SerializeField] GameObject levelNavMenu;
+    [SerializeField] GameObject shadowInNavMenu;
     [SerializeField] SpawnManager spawnManager;
     [SerializeField] NavigationController navigationController;
     [SerializeField] Transform playerObject;
@@ -28,28 +29,23 @@ public class HardLevelsNavigation : MonoBehaviour
 
         SwitchMenuState(false);
         isButtonInteractible = Progress.Instance.playerInfo.isNavButtonActive;
-        ActivateLevelsNavButton(isButtonInteractible);
-    }
-
-    public void ActivateLevelsNavButton(bool state)
-    {
-        levelsNavButton.interactable = isButtonInteractible;
+        shadowInNavMenu.SetActive(!isButtonInteractible);
     }
 
     public void SetActiveState(bool state)
     {
         isButtonInteractible = state;
-        ActivateLevelsNavButton(isButtonInteractible);
+        shadowInNavMenu.SetActive(!state);
         Progress.Instance.playerInfo.isNavButtonActive = isButtonInteractible;
         YandexSDK.Save();
     }
+    
 
     public void GoToLevel(int pointNumber)
     {
         spawnManager.UpdatePointNumber(pointNumber - 1);
         spawnManager.RespawnPlayer();
-        playerObject.transform.rotation = Quaternion.LookRotation(directionsDict[pointNumber]);
-      
+        playerObject.transform.rotation = Quaternion.LookRotation(directionsDict[pointNumber]);      
         navigationController.ShowPauseMenu();
         levelNavMenu.SetActive(false);
     }

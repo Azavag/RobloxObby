@@ -19,7 +19,7 @@ public class Language : MonoBehaviour
             Instance = this;
             transform.SetParent(null);
             DontDestroyOnLoad(this);
-            YandexSDK.GetCurrentLanguage();
+            
 #if !UNITY_EDITOR
             currentLanguage = GetLang();          
 #endif
