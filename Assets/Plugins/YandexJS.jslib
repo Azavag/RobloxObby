@@ -174,6 +174,6 @@ RateGameExtern: function () {
      GetDomainExtern : function()
     {
       var deviceData = ysdk.environment.i18n.tld;   
-      myGameInstance.SendMessage('YandexSDK', 'SetDomain', domainData);
+      myGameInstance.SendMessage('Link', 'SetDomain', domainData);
     },
   });
